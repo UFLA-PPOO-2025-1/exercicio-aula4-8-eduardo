@@ -66,12 +66,16 @@ public class Raposa extends Animal
      * @param novasRaposas Uma lista para retornar as raposas recém-nascidas.
      */
     @Override
-    public void agir(List<Animal> novasRaposas)
+    public void agir(List<Ator> novosAtores)
     {
         incrementarIdade();
         incrementarFome();
         if(estaVivo()) {
-            reproduzir(novasRaposas);            
+            List<Animal> filhotes = new java.util.ArrayList<>();
+            reproduzir(filhotes);
+            for (Animal filhote : filhotes) {
+                novosAtores.add(filhote);
+            }
             // Move-se em direção a uma fonte de comida, se encontrada.
             Localizacao novaLocalizacao = buscarComida();
             if(novaLocalizacao == null) { 
