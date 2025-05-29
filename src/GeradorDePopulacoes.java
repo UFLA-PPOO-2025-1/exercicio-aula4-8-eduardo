@@ -40,4 +40,24 @@ public class GeradorDePopulacoes {
             }
         }
     }
+
+    public void popularCampo(Campo campo, List<Ator> atores) {
+        Random rand = Randomizador.obterRandom();
+        campo.limpar();
+        for(int linha = 0; linha < campo.obterComprimento(); linha++) {
+            for(int coluna = 0; coluna < campo.obterLargura(); coluna++) {
+                if(rand.nextDouble() <= PROBABILIDADE_CRIACAO_RAPOSA) {
+                    Localizacao localizacao = new Localizacao(linha, coluna);
+                    Raposa raposa = new Raposa(true, campo, localizacao);
+                    atores.add(raposa);
+                }
+                else if(rand.nextDouble() <= PROBABILIDADE_CRIACAO_COELHO) {
+                    Localizacao localizacao = new Localizacao(linha, coluna);
+                    Coelho coelho = new Coelho(true, campo, localizacao);
+                    atores.add(coelho);
+                }
+                // caso contrário, deixa a localização vazia.
+            }
+        }
+    }
 }
